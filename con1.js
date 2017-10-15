@@ -14,10 +14,12 @@ app.get('/',function(req,res){
 app.get('/api/genres',function(req,res)
 {
  		Genre.getGenres(function(err,genres){
+ 			if(err){
+ 				throw err;
+ 			}
 		res.json(genres);
 	});
 
 });
-
 app.listen(3000);
 console.log('Running on port 3000....');
