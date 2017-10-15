@@ -1,19 +1,23 @@
-var MongoClient = require('mongodb').MongoClient;
+var express=require('express');
+var app=express();
+var bodyParser=require('body-parser');
+var mongoose = require('mongoose');
 
-MongoClient.connect("mongodb://localhost:27017/info", function (err, db) {
-    
-    db.collection('emp', function (err, collection) {
-        
-              collection.insert({firstName: 'Annu', lastName: 'Yadav', age: 22 ,email: 'annuyads09@gmail.co ',phone: '7767983560',address:'Haryana' });
-        
-        
+mongoose.connect('mongodb://localhost/info');
+var db=mongoose.connection;
+emps1=require('./models/emps');
+//console.log(emps1);
 
-        db.collection('emp').count(function (err, count) {
-            if (err) throw err;
-            
-            console.log('Total Rows: ' + count);
-        });
-    });
-                
+app.get('/',function(req,res){
+	res.send('Please use /api/emp');
+});
+app.get('/api/emp',function(req,res)
+{
+ 		emps1.getemp(function(err,emp){
+		res.json(emp);
+	});
+
 });
 
+app.listen(3000);
+console.log('Running on port 3000....');
