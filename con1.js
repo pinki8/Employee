@@ -5,16 +5,16 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/info');
 var db=mongoose.connection;
-emps1=require('./models/emps');
+Genre=require('./models/genre');
 //console.log(emps1);
 
 app.get('/',function(req,res){
-	res.send('Please use /api/emp');
+	res.send('Please use /api/genres');
 });
-app.get('/api/emp',function(req,res)
+app.get('/api/genres',function(req,res)
 {
- 		emps1.getemp(function(err,emp){
-		res.json(emp);
+ 		Genre.getGenres(function(err,genres){
+		res.json(genres);
 	});
 
 });
