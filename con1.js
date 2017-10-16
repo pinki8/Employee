@@ -33,5 +33,17 @@ app.post('/api/genres',function(req,res)
 	});
 });
 
+app.put('/api/genres/:_id',function(req,res){
+	var id=req.params._id;
+	//console.log(id);
+	var genre=req.body;
+	Genre.updateGenre(id,genre,{},function(err,genre){
+	if(err){
+		throw err;
+	}
+	res.json(genre);
+	});
+});
+
 app.listen(3000);
 console.log('Running on port 3000....');
