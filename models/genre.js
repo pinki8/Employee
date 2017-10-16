@@ -34,3 +34,27 @@ module.exports.addGenre=function(genre,callback)
 	Genre.create(genre,callback);
 	//console.log(t);
 }
+
+module.exports.updateGenre=function(id,genre,options,callback)
+{
+	var query={_id: id};
+	 var update={
+		 firstName:genre.firstName,
+		 lastName:genre.lastName,
+		 age:genre.age,
+		 email:genre.email,
+		 phone:genre.phone,
+		 address:genre.address
+	}
+	Genre.findOneAndUpdate(query,update,options,callback); 
+}
+
+
+
+
+
+
+
+
+
+*/
